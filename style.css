@@ -1,0 +1,272 @@
+/* Basic Reset & Font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f0f2f5; /* Lighter, modern background */
+    color: #1c1e21; /* Darker text for better contrast */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align top */
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+/* Calculator Container */
+.calculator-container {
+    background-color: #ffffff;
+    padding: 35px 45px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #dddfe2;
+}
+
+/* Header Styling */
+.calculator-header {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #e4e6eb;
+    padding-bottom: 25px;
+}
+
+.calculator-icon {
+    color: #0866ff; /* A modern blue */
+    margin-bottom: 10px;
+}
+
+h1 {
+    color: #1c1e21;
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 1.8em;
+}
+
+.description {
+    color: #606770;
+    font-size: 1em;
+    line-height: 1.5;
+    max-width: 600px; /* Constrain description width */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Input Grid Layout */
+.input-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 25px 35px; /* Row gap and column gap */
+    margin-bottom: 35px;
+}
+
+/* Input Group Styling */
+.input-group {
+    text-align: left;
+    position: relative;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f7f8fa;
+    border: 1px solid #e9ecef;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group:focus-within {
+     border-color: #8ab4f8;
+     box-shadow: 0 0 0 2px rgba(138, 180, 248, 0.3);
+}
+
+/* Visual distinction for years (Optional) */
+.input-group.year-1 { border-left: 3px solid #667eea; }
+.input-group.year-2 { border-left: 3px solid #764ba2; }
+.input-group.year-3 { border-left: 3px solid #5a64c8; }
+.input-group.year-4 { border-left: 3px solid #8c50aa; }
+
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95em;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccd0d5;
+    border-radius: 6px;
+    font-size: 1em;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s ease;
+    background-color: #fff;
+}
+
+input[type="number"]:focus {
+    border-color: #0866ff;
+    outline: none;
+}
+
+input[type="number"]::placeholder {
+    color: #8a8d91;
+    font-style: italic;
+    font-size: 0.9em; /* Slightly smaller placeholder */
+}
+
+/* Note Styling (Optional if needed, removed from HTML) */
+/* .note { ... } */
+
+
+/* Button Styling */
+#cgpa-form button {
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 6px;
+    font-size: 1.05em;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin: 10px 5px 0 5px;
+}
+
+#calculate-btn {
+    background-color: #0866ff;
+}
+#calculate-btn:hover {
+    background-color: #1877f2;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(8, 102, 255, 0.2);
+}
+
+#reset-btn {
+    background-color: #6c757d;
+}
+#reset-btn:hover {
+    background-color: #5a6268;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(108, 117, 125, 0.2);
+}
+
+
+/* Result Area Styling */
+.result-area {
+    margin-top: 35px;
+    padding: 20px 25px;
+    border-radius: 8px;
+    font-size: 1.25em;
+    font-weight: 600;
+    min-height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.4s ease; /* Animate all properties */
+    border: 1px solid transparent;
+    word-wrap: break-word;
+    opacity: 0; /* Start hidden */
+    transform: translateY(10px); /* Start slightly lower */
+}
+
+.result-area.show { /* Class to fade in */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.result-area:empty {
+    padding: 0;
+    min-height: 0;
+    border: none;
+    opacity: 0; /* Ensure hidden when empty */
+    transform: translateY(10px);
+}
+
+
+.result-area.success {
+    background-color: #e7f3ff;
+    color: #0866ff;
+    border-color: #b9d7ff;
+}
+
+.result-area.error {
+    background-color: #fde7e7;
+    color: #d8000c;
+    border-color: #f7c5c5;
+    font-weight: 500;
+    font-size: 1.05em;
+}
+
+/* Formula Info Section */
+.formula-info {
+    margin-top: 40px;
+    padding: 25px;
+    background-color: #f0f2f5;
+    border-radius: 8px;
+    border: 1px solid #e4e6eb;
+    text-align: left;
+    font-size: 0.9em;
+    color: #606770;
+}
+
+.formula-info h3 {
+    color: #1c1e21;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    text-align: center;
+    font-weight: 600;
+}
+
+.formula-info p {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+.formula-info p.formula-display {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #e9ecef;
+    border-radius: 6px;
+    font-family: monospace;
+    font-size: 0.95em;
+    color: #333;
+    word-break: break-all;
+}
+.formula-info strong {
+    color: #1c1e21;
+    font-weight: 600;
+}
+.formula-info small {
+    display: block;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 6px;
+    font-style: italic;
+    color: #606770;
+    text-align: center;
+    line-height: 1.5;
+    font-size: 0.9em;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    body { padding: 20px 10px; }
+    .calculator-container { padding: 25px 20px; }
+    .input-grid { grid-template-columns: 1fr; gap: 20px; }
+    h1 { font-size: 1.6em; }
+    .description { font-size: 0.95em; }
+    #cgpa-form button { font-size: 1em; padding: 12px 20px; width: calc(50% - 10px); }
+    .result-area { font-size: 1.15em; padding: 15px 20px; }
+    .formula-info { padding: 20px; font-size: 0.85em; }
+    .formula-info p.formula-display { font-size: 0.9em; padding: 10px; }
+    .formula-info small { font-size: 0.85em; }
+}
+
+@media (max-width: 480px) {
+    #cgpa-form button { width: 100%; margin: 8px 0; }
+}
